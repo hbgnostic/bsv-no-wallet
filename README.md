@@ -61,9 +61,21 @@ Creates one private key (`treasury-main.wif`) and prints its address. Fund that 
 a few hundred sats (a fraction of a cent) from any BSV wallet — HandCash, Electrum SV, etc.
 *A wallet, at its atom, is just a key.*
 
-### 1 · Lock coins behind a question, then claim them with the answer
+### 1 · Send a payment
 
-This is the whole idea — spending = *satisfying a script*, not signing as an address.
+The plain-vanilla case: pay an address, get your change back. Same four parts as every
+wallet — find a UTXO, build one input + two outputs (payment, change), sign, broadcast.
+```bash
+node 01-send-payment.js <destAddress> <amountSats> --broadcast
+```
+Dry-runs by default; add `--broadcast` to actually send. Under the hood this is *still* a
+lock/unlock pair — the "pay to an address" script (P2PKH) just means "unlock with a
+signature from this key." There's no special case for a normal payment; it's the same
+mechanism as everything else in this repo.
+
+### 2 · Lock coins behind a question, then claim them with the answer
+
+Now the same mechanism with a different lock — proof this isn't specific to addresses.
 `create` locks coins behind the **hash** of the answer; `claim` unlocks them with the
 **answer itself** — no key, no signature. Two separate transactions, two separate commands.
 ```bash
@@ -73,9 +85,8 @@ node bsv-quiz.js create --broadcast
 # Anyone who knows the answer claims it — no private key needed, just the answer + an address:
 node bsv-quiz.js claim <txid> "satoshi nakamoto" <yourAddress> --broadcast
 ```
-Everything dry-runs by default; add `--broadcast` to actually send. Answers are **exact
-bytes** — lowercase, exact spacing (`"satoshi nakamoto"`), no commas. That's not a quirk of
-the quiz; it's how SHA-256 works, and it's part of the lesson.
+Answers are **exact bytes** — lowercase, exact spacing (`"satoshi nakamoto"`), no commas.
+That's not a quirk of the quiz; it's how SHA-256 works, and it's part of the lesson.
 
 ## A note on how these run
 
