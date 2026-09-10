@@ -9,6 +9,8 @@ one sitting — and then lets you play with Bitcoin Script directly (a hash puzz
 claimable quiz) to prove the point: **you don't send coins to an address, you lock a coin
 with a script and later satisfy it.**
 
+> Prefer a guided walkthrough with progress checkboxes? → [BSV No-Wallet Lab](https://claude.ai/code/artifact/2ef0963f-385e-4232-a2c0-234d3168a6e6)
+
 ---
 
 ## ⚠️ Read this first — it uses REAL money

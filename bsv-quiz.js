@@ -23,8 +23,8 @@ const HERE = path.dirname(fileURLToPath(import.meta.url))   // so the key is fou
 
 // ═══ CONFIG ══════════════════════════════════════════════════════════════════
 const NETWORK  = 'main'                                   // 'main' | 'test'
-const QUESTION = "What pseudonym did Bitcoin's creator use? (two words, lowercase)"  // shown to players
-const ANSWER   = 'satoshi nakamoto'                       // exact bytes. Keep it lowercase/simple.
+const QUESTION = "What does WIF stand for, when it comes to your private key file? (three words, lowercase)"  // shown to players
+const ANSWER   = 'wallet import format'                   // exact bytes. Keep it lowercase/simple.
 const BOUNTY   = 1000                                     // sats to lock as the prize
 
 // derived
